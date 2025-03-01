@@ -24,7 +24,7 @@ export default function ContactList() {
       uid: 2,
       name: 'Amma',
       imageUrl:
-        'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
+        'https://i.postimg.cc/g0PzxvBM/profilei-Img.png',
       subMsg: 'You: EVS Re test Question Bank...',
       time: '15:15',
       unseenMsgNumber: '1',
@@ -60,7 +60,7 @@ export default function ContactList() {
       uid: 6,
       name: 'Rajath Mit',
       imageUrl:
-        'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
+        '',
       subMsg: 'You: EVS Re test Question Bank...',
       time: '15:15',
       unseenMsgNumber: '1',
@@ -184,17 +184,19 @@ export default function ContactList() {
     },
   ];
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{top: height * 0.23}]}>
       <ScrollView scrollEnabled={true} style={{paddingTop: 16}}>
         {contacts.map(contact => (
           <View key={contact.uid} style={styles.contactContainer}>
             <View style={styles.img_name}>
+              <View style={{backgroundColor: '#E7E7E7',borderRadius: 12,overflow: 'hidden'}}>
               <Image
                 source={{
                   uri: contact.imageUrl,
                 }}
                 style={styles.img}
               />
+              </View>
               <View style={styles.txt}>
                 <Text style={{color: '#041E49',fontWeight: 400,fontSize: 14}}>{contact.name}</Text>
                 <Text style={{color: '#444746',fontWeight: 400,fontSize: 10}}>Done</Text>
@@ -218,7 +220,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     zIndex: 1,
-    top: height * 0.15,
     
     
   },
@@ -234,6 +235,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 12,
+    resizeMode:'cover',
+    overflow: 'hidden'
+
   },
   img_name: {
     flexDirection: 'row',

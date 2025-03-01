@@ -6,8 +6,7 @@ import AccountName from './AccountName';
 import BackArrowIcon from '../../../../Assets/Options/BackArrowIcon';
 import MainIcon from '../../../../Assets/Options/MainIcon'
 
-export default function Options() {
-  const [searchBar, setSearchBar] = useState(false);
+export default function Options({isSearchActive, setIsSearchActive}) {
 
   return (
     <>
@@ -16,8 +15,8 @@ export default function Options() {
         <MainIcon />
         <ToggleWrapper />
         <View style={styles.lastTwo}>
-          <TouchableOpacity onPress={() => setSearchBar(prev => !prev)}>
-            <SearhIconBtn isSelected={searchBar} />
+          <TouchableOpacity onPress={() => {setIsSearchActive(!isSearchActive) ; console.log("aaaaaa")}}>
+            <SearhIconBtn />
           </TouchableOpacity>
           <View style={{paddingLeft:6}}>
             <AccountName />
