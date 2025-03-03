@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import ToggleBtn from './ToggleBtn';
 
-export default function ToggleWrapper() {
-  const [isChatSelected, setIsChatSelected] = useState(true);
+export default function ToggleWrapper({isChatSelected, setIsChatSelected}) {
 
   return (
     <View style={styles.toggleWrapper}>

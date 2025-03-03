@@ -1,15 +1,17 @@
 import {
   ScrollView,
+  Animated,
   StyleSheet,
   Image,
   View,
   Text,
   Dimensions,
+  Easing,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
 const {height, width} = Dimensions.get('window');
-export default function ContactList() {
+export default function ContactList({isSearchActive}) {
   const contacts = [
     {
       uid: 1,
@@ -23,8 +25,7 @@ export default function ContactList() {
     {
       uid: 2,
       name: 'Amma',
-      imageUrl:
-        'https://i.postimg.cc/g0PzxvBM/profilei-Img.png',
+      imageUrl: 'https://i.postimg.cc/g0PzxvBM/profilei-Img.png',
       subMsg: 'You: EVS Re test Question Bank...',
       time: '15:15',
       unseenMsgNumber: '1',
@@ -40,7 +41,7 @@ export default function ContactList() {
     },
     {
       uid: 4,
-      name: 'Akka ❤️',
+      name: 'Akka ❤',
       imageUrl:
         'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
       subMsg: 'You: EVS Re test Question Bank...',
@@ -59,8 +60,7 @@ export default function ContactList() {
     {
       uid: 6,
       name: 'Rajath Mit',
-      imageUrl:
-        '',
+      imageUrl: '',
       subMsg: 'You: EVS Re test Question Bank...',
       time: '15:15',
       unseenMsgNumber: '1',
@@ -183,35 +183,59 @@ export default function ContactList() {
       unseenMsgNumber: '1',
     },
   ];
+
+  const animatedTop = useRef(new Animated.Value(height * 0.15)).current;
+
+  useEffect(() => {
+    Animated.timing(animatedTop, {
+      toValue: isSearchActive ? height * 0.23 : height * 0.14,
+      duration: 400, // Smooth transition duration
+      easing: Easing.inOut(Easing.ease), // ease-in-out effect
+      useNativeDriver: false, // Because we're animating a layout property (top)
+    }).start();
+  }, [isSearchActive]); //Animation effect when searchBar states changes
+
   return (
-    <View style={[styles.container,{top: height * 0.23}]}>
+    <Animated.View style={[styles.container, {top: animatedTop}]}>
+      {console.log(isSearchActive)}
       <ScrollView scrollEnabled={true} style={{paddingTop: 16}}>
         {contacts.map(contact => (
           <View key={contact.uid} style={styles.contactContainer}>
             <View style={styles.img_name}>
-              <View style={{backgroundColor: '#E7E7E7',borderRadius: 12,overflow: 'hidden'}}>
-              <Image
-                source={{
-                  uri: contact.imageUrl,
-                }}
-                style={styles.img}
-              />
+              <View
+                style={{
+                  backgroundColor: '#E7E7E7',
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                }}>
+                <Image
+                  source={{
+                    uri: contact.imageUrl,
+                  }}
+                  style={styles.img}
+                />
               </View>
               <View style={styles.txt}>
-                <Text style={{color: '#041E49',fontWeight: 400,fontSize: 14}}>{contact.name}</Text>
-                <Text style={{color: '#444746',fontWeight: 400,fontSize: 10}}>Done</Text>
+                <Text style={{color: '#041E49', fontWeight: 400, fontSize: 14}}>
+                  {contact.name}
+                </Text>
+                <Text style={{color: '#444746', fontWeight: 400, fontSize: 10}}>
+                  Done
+                </Text>
               </View>
             </View>
             <View style={styles.time_unseen}>
-              <Text style={{color: '#444746',fontWeight: 400,fontSize: 12}}>{contact.time}</Text>
+              <Text style={{color: '#444746', fontWeight: 400, fontSize: 12}}>
+                {contact.time}
+              </Text>
               <View style={styles.unseen}>
-                  <Text style={{color: '#fff'}}>99+</Text>
+                <Text style={{color: '#fff'}}>99+</Text>
               </View>
             </View>
-          </View>
+          </View> //Do Seperate Component for this (ChatListItem)
         ))}
       </ScrollView>
-    </View>
+    </Animated.View>
   );
 }
 
@@ -220,8 +244,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     zIndex: 1,
-    
-    
   },
   contactContainer: {
     alignItems: 'center',
@@ -229,15 +251,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 16,
     paddingRight: 26,
-    paddingVertical: 6
+    paddingVertical: 6,
   },
   img: {
     height: 40,
     width: 40,
     borderRadius: 12,
-    resizeMode:'cover',
-    overflow: 'hidden'
-
+    resizeMode: 'cover',
+    overflow: 'hidden',
   },
   img_name: {
     flexDirection: 'row',
@@ -247,15 +268,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 12,
     paddingBottom: 2,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
-  time_unseen:{
-    alignItems: 'flex-end'
+  time_unseen: {
+    alignItems: 'flex-end',
   },
-  unseen:{
+  unseen: {
     backgroundColor: '#041E49',
     justifyContent: 'center',
     alignContent: 'center',
     borderRadius: 10,
-    paddingHorizontal: 6
-  }});
+    paddingHorizontal: 6,
+  },
+});

@@ -4,26 +4,38 @@ import ToggleWrapper from './ToggleWrapper';
 import SearhIconBtn from './SearchIconBtn';
 import AccountName from './AccountName';
 import BackArrowIcon from '../../../../Assets/Options/BackArrowIcon';
-import MainIcon from '../../../../Assets/Options/MainIcon'
+import MainIcon from '../../../../Assets/Options/MainIcon';
 
-export default function Options({isSearchActive, setIsSearchActive}) {
-
+export default function Options({
+  isSearchActive,
+  setIsSearchActive,
+  isChatSelected,
+  setIsChatSelected,
+}) {
   return (
     <>
       <View style={styles.container}>
         {/* <BackArrowIcon width={30} height={30} strokeColor="white" /> */}
-        <MainIcon />
-        <ToggleWrapper />
+        <MainIcon /> {/*AppIcon*/}
+        <ToggleWrapper
+          isChatSelected={isChatSelected}
+          setIsChatSelected={setIsChatSelected}
+        />{' '}
+        {/*ToggleSwitch*/}
         <View style={styles.lastTwo}>
-          <TouchableOpacity onPress={() => {setIsSearchActive(!isSearchActive) ; console.log("aaaaaa")}}>
-            <SearhIconBtn />
+          <TouchableOpacity
+            onPress={() => {
+              setIsSearchActive(!isSearchActive);
+              console.log('aaaaaa');
+            }}>
+            <SearhIconBtn /> {/*CustomIconButton*/}
           </TouchableOpacity>
-          <View style={{paddingLeft:6}}>
-            <AccountName />
+          <View style={{paddingLeft: 6}}>
+            <AccountName /> {/*ProfileIcon*/}
           </View>
         </View>
       </View>
-      <Text style={styles.txt}>Chats</Text>
+      {isChatSelected?(<Text style={styles.txt}>Chat</Text>):(<Text style={styles.txt}>Group</Text>)}
     </>
   );
 }
@@ -47,11 +59,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  txt:{
+  txt: {
     color: '#fff',
     fontWeight: 400,
     fontSize: 24,
-    paddingLeft:16,
-    paddingTop:24
+    paddingLeft: 16,
+    paddingTop: 24,
   },
 });

@@ -1,6 +1,6 @@
-import React from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
-import SearchIcon from "../../../../Assets/Options/SearchIcon";
+import React from 'react';
+import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import SearchIcon from '../../../../Assets/Options/SearchIcon';
 const SearchBar = ({isSearchActive, setIsSearchActive}) => {
   return (
     <View style={styles.container}>
@@ -9,7 +9,11 @@ const SearchBar = ({isSearchActive, setIsSearchActive}) => {
         placeholderTextColor="#666"
         style={styles.input}
       />
-      <TouchableOpacity style={styles.iconContainer} onPress={()=>{setIsSearchActive(false)}}>
+      <TouchableOpacity
+        style={styles.iconContainer}
+        onPress={() => {
+          setIsSearchActive(false);
+        }}>
         <SearchIcon />
       </TouchableOpacity>
     </View>
@@ -18,9 +22,9 @@ const SearchBar = ({isSearchActive, setIsSearchActive}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#fff",
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
     borderRadius: 30,
     paddingHorizontal: 16,
     paddingVertical: 4,
@@ -33,7 +37,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: "#333",
+    color: '#333',
   },
   iconContainer: {
     padding: 5,
