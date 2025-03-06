@@ -1,18 +1,15 @@
 import {
-  Image,
   ImageBackground,
   StyleSheet,
-  Text,
   View,
   Dimensions,
-  TextInput,
 } from 'react-native';
 import React, {useState} from 'react';
 import Options from './Components/Options';
 import ContactList from './Components/ContactList';
 import SearchBar from './Components/SearchBar';
 
-export default function ChatView() {
+export default function ChatView({navigation}) {
     const [isChatSelected, setIsChatSelected] = useState(true); //Chat or Group
   const [isSearchActive, setIsSearchActive] = useState(false);
   const {height, width} = Dimensions.get('window');
@@ -20,7 +17,8 @@ export default function ChatView() {
   return (
     <View>
       <ImageBackground
-        source={require('C:/Users/nshre/OneDrive/Desktop/react_native/ChatApp/Assets/backgroud-imag.jpg')}
+        // source={require('../../../Assets/backgroud-imag.jpg')}
+        source={require('../../../Assets/Backgroud-imag.jpg')}
         resizeMode="cover"
         style={{
           width: '100%',
@@ -43,7 +41,7 @@ export default function ChatView() {
         )}
       </ImageBackground>
       {/* console.log(isSearchActive) */}
-      <ContactList isSearchActive={isSearchActive} />
+      <ContactList isSearchActive={isSearchActive} navigation={navigation} />
     </View>
   );
 }

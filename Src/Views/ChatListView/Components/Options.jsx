@@ -26,7 +26,6 @@ export default function Options({
           <TouchableOpacity
             onPress={() => {
               setIsSearchActive(!isSearchActive);
-              console.log('aaaaaa');
             }}>
             <SearhIconBtn /> {/*CustomIconButton*/}
           </TouchableOpacity>

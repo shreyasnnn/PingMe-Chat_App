@@ -7,11 +7,13 @@ import {
   Text,
   Dimensions,
   Easing,
+  Pressable,
 } from 'react-native';
 import React, {useEffect, useRef} from 'react';
+import {NavigationHelpersContext} from '@react-navigation/native';
 
 const {height, width} = Dimensions.get('window');
-export default function ContactList({isSearchActive}) {
+export default function ContactList({isSearchActive, navigation}) {
   const contacts = [
     {
       uid: 1,
@@ -147,7 +149,7 @@ export default function ContactList({isSearchActive}) {
       unseenMsgNumber: '1',
     },
     {
-      uid: 15,
+      uid: 16,
       name: 'BA GURU NOTES TAGO',
       imageUrl:
         'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
@@ -156,7 +158,7 @@ export default function ContactList({isSearchActive}) {
       unseenMsgNumber: '1',
     },
     {
-      uid: 15,
+      uid: 17,
       name: 'BA GURU NOTES TAGO',
       imageUrl:
         'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
@@ -165,7 +167,7 @@ export default function ContactList({isSearchActive}) {
       unseenMsgNumber: '1',
     },
     {
-      uid: 15,
+      uid: 18,
       name: 'BA GURU NOTES TAGO',
       imageUrl:
         'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
@@ -174,7 +176,7 @@ export default function ContactList({isSearchActive}) {
       unseenMsgNumber: '1',
     },
     {
-      uid: 15,
+      uid: 19,
       name: 'BA GURU NOTES TAGO',
       imageUrl:
         'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
@@ -196,43 +198,55 @@ export default function ContactList({isSearchActive}) {
   }, [isSearchActive]); //Animation effect when searchBar states changes
 
   return (
-    <Animated.View style={[styles.container, {top: animatedTop}]}>
-      {console.log(isSearchActive)}
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          top: animatedTop,
+          height: height - (isSearchActive ? height * 0.23 : height * 0.14),
+        },
+      ]}>
       <ScrollView scrollEnabled={true} style={{paddingTop: 16}}>
         {contacts.map(contact => (
-          <View key={contact.uid} style={styles.contactContainer}>
-            <View style={styles.img_name}>
-              <View
-                style={{
-                  backgroundColor: '#E7E7E7',
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                }}>
-                <Image
-                  source={{
-                    uri: contact.imageUrl,
-                  }}
-                  style={styles.img}
-                />
+          <Pressable
+            onPress={() => navigation.navigate('ChatView', {contact: contact})}>
+            <View key={contact.uid} style={styles.contactContainer}>
+              <View style={styles.img_name}>
+                <View
+                  style={{
+                    backgroundColor: '#E7E7E7',
+                    borderRadius: 12,
+                    overflow: 'hidden',
+                  }}>
+                  <Image
+                    source={{
+                      uri: contact.imageUrl,
+                    }}
+                    style={styles.img}
+                  />
+                </View>
+                <View style={styles.txt}>
+                  <Text
+                    style={{color: '#041E49', fontWeight: 400, fontSize: 14}}>
+                    {contact.name}
+                  </Text>
+                  <Text
+                    style={{color: '#444746', fontWeight: 400, fontSize: 10}}>
+                    Done
+                  </Text>
+                </View>
               </View>
-              <View style={styles.txt}>
-                <Text style={{color: '#041E49', fontWeight: 400, fontSize: 14}}>
-                  {contact.name}
+              <View style={styles.time_unseen}>
+                <Text style={{color: '#444746', fontWeight: 400, fontSize: 12}}>
+                  {contact.time}
                 </Text>
-                <Text style={{color: '#444746', fontWeight: 400, fontSize: 10}}>
-                  Done
-                </Text>
+                <View style={styles.unseen}>
+                  <Text style={{color: '#fff'}}>99+</Text>
+                </View>
               </View>
-            </View>
-            <View style={styles.time_unseen}>
-              <Text style={{color: '#444746', fontWeight: 400, fontSize: 12}}>
-                {contact.time}
-              </Text>
-              <View style={styles.unseen}>
-                <Text style={{color: '#fff'}}>99+</Text>
-              </View>
-            </View>
-          </View> //Do Seperate Component for this (ChatListItem)
+            </View>{' '}
+            {/*Do Seperate Component for this (ChatListItem)*/}
+          </Pressable>
         ))}
       </ScrollView>
     </Animated.View>
