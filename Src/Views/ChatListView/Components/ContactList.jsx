@@ -2,15 +2,12 @@ import {
   ScrollView,
   Animated,
   StyleSheet,
-  Image,
-  View,
-  Text,
   Dimensions,
   Easing,
   Pressable,
 } from 'react-native';
 import React, {useEffect, useRef} from 'react';
-import {NavigationHelpersContext} from '@react-navigation/native';
+import ChatListItems from './ChatListItems';
 
 const {height, width} = Dimensions.get('window');
 export default function ContactList({isSearchActive, navigation}) {
@@ -18,8 +15,7 @@ export default function ContactList({isSearchActive, navigation}) {
     {
       uid: 1,
       name: 'BA GURU NOTES TAGO',
-      imageUrl:
-        'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
+      imageUrl:'https://photosking.net/wp-content/uploads/2024/05/no-dp_16.webp',
       recentMsg: 'You: EVS Re test Question Bank...',
       time: '15:15',
       unseenMsgNumber: '1',
@@ -210,42 +206,7 @@ export default function ContactList({isSearchActive, navigation}) {
         {contacts.map(contact => (
           <Pressable
             onPress={() => navigation.navigate('ChatView', {contact: contact})}>
-            <View key={contact.uid} style={styles.contactContainer}>
-              <View style={styles.img_name}>
-                <View
-                  style={{
-                    backgroundColor: '#E7E7E7',
-                    borderRadius: 12,
-                    overflow: 'hidden',
-                  }}>
-                  <Image
-                    source={{
-                      uri: contact.imageUrl,
-                    }}
-                    style={styles.img}
-                  />
-                </View>
-                <View style={styles.txt}>
-                  <Text
-                    style={{color: '#041E49', fontWeight: 400, fontSize: 14}}>
-                    {contact.name}
-                  </Text>
-                  <Text
-                    style={{color: '#444746', fontWeight: 400, fontSize: 10}}>
-                    Done
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.time_unseen}>
-                <Text style={{color: '#444746', fontWeight: 400, fontSize: 12}}>
-                  {contact.time}
-                </Text>
-                <View style={styles.unseen}>
-                  <Text style={{color: '#fff'}}>99+</Text>
-                </View>
-              </View>
-            </View>{' '}
-            {/*Do Seperate Component for this (ChatListItem)*/}
+            <ChatListItems contact={contact} />
           </Pressable>
         ))}
       </ScrollView>
@@ -258,40 +219,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     zIndex: 1,
-  },
-  contactContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 16,
-    paddingRight: 26,
-    paddingVertical: 6,
-  },
-  img: {
-    height: 40,
-    width: 40,
-    borderRadius: 12,
-    resizeMode: 'cover',
-    overflow: 'hidden',
-  },
-  img_name: {
-    flexDirection: 'row',
-  },
-  txt: {
-    flexDirection: 'colum',
-    justifyContent: 'space-between',
-    paddingLeft: 12,
-    paddingBottom: 2,
-    alignItems: 'flex-start',
-  },
-  time_unseen: {
-    alignItems: 'flex-end',
-  },
-  unseen: {
-    backgroundColor: '#041E49',
-    justifyContent: 'center',
-    alignContent: 'center',
-    borderRadius: 10,
-    paddingHorizontal: 6,
   },
 });

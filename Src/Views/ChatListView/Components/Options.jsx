@@ -1,10 +1,10 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
-import ToggleWrapper from './ToggleWrapper';
-import SearhIconBtn from './SearchIconBtn';
-import AccountName from './AccountName';
+import ToggleSwitch from './ToggleSwitch';
+import CustomIconButton from './CustomIconButton';
+import ProfileIcon from './ProfileIcon';
 import BackArrowIcon from '../../../../Assets/Options/BackArrowIcon';
-import MainIcon from '../../../../Assets/Options/MainIcon';
+import AppIcon from '../../../../Assets/Options/AppIcon';
 
 export default function Options({
   isSearchActive,
@@ -16,8 +16,8 @@ export default function Options({
     <>
       <View style={styles.container}>
         {/* <BackArrowIcon width={30} height={30} strokeColor="white" /> */}
-        <MainIcon /> {/*AppIcon*/}
-        <ToggleWrapper
+        <AppIcon /> {/*AppIcon*/}
+        <ToggleSwitch
           isChatSelected={isChatSelected}
           setIsChatSelected={setIsChatSelected}
         />{' '}
@@ -27,10 +27,10 @@ export default function Options({
             onPress={() => {
               setIsSearchActive(!isSearchActive);
             }}>
-            <SearhIconBtn /> {/*CustomIconButton*/}
+            <CustomIconButton /> {/*CustomIconButton*/}
           </TouchableOpacity>
           <View style={{paddingLeft: 6}}>
-            <AccountName /> {/*ProfileIcon*/}
+            <ProfileIcon /> {/*ProfileIcon*/}
           </View>
         </View>
       </View>

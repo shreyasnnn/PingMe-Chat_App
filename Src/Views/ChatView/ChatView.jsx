@@ -9,7 +9,10 @@ import React from 'react';
 import AppBarChatView from './Components/AppBarChatView';
 import {useRoute} from '@react-navigation/native';
 import ChatBubble from './Components/ChatBubble';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import SendMessageContainer from './Components/SendMessageContainer';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 const messages = [
   {
@@ -147,7 +150,7 @@ export default function ChatView({route, navigation}) {
           {width: '100%', height: height - height * 0.08},
         ]}>
         <ScrollView>
-          {messages.map((msg,index) => (
+          {messages.map(msg => (
             <ChatBubble
               // key = {index}
               message={msg.message}
@@ -156,6 +159,18 @@ export default function ChatView({route, navigation}) {
             />
           ))}
         </ScrollView>
+        <SendMessageContainer />
+      <LinearGradient
+        colors={['transparent', 'white']}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          zIndex: 0,
+          right: 0,
+          height: 80, // Adjust height as needed
+        }}
+      />
       </View>
     </View>
   );
@@ -168,5 +183,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     top: height * 0.08,
     paddingTop: 20,
+    justifyContent: 'flex-end',
   },
 });

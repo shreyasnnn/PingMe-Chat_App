@@ -1,23 +1,17 @@
-import {
-  ImageBackground,
-  StyleSheet,
-  View,
-  Dimensions,
-} from 'react-native';
+import {ImageBackground, StyleSheet, View, Dimensions} from 'react-native';
 import React, {useState} from 'react';
 import Options from './Components/Options';
 import ContactList from './Components/ContactList';
 import SearchBar from './Components/SearchBar';
 
 export default function ChatView({navigation}) {
-    const [isChatSelected, setIsChatSelected] = useState(true); //Chat or Group
+  const [isChatSelected, setIsChatSelected] = useState(true); //Chat or Group
   const [isSearchActive, setIsSearchActive] = useState(false);
   const {height, width} = Dimensions.get('window');
 
   return (
     <View>
       <ImageBackground
-        // source={require('../../../Assets/backgroud-imag.jpg')}
         source={require('../../../Assets/Backgroud-imag.jpg')}
         resizeMode="cover"
         style={{
@@ -40,7 +34,6 @@ export default function ChatView({navigation}) {
           />
         )}
       </ImageBackground>
-      {/* console.log(isSearchActive) */}
       <ContactList isSearchActive={isSearchActive} navigation={navigation} />
     </View>
   );

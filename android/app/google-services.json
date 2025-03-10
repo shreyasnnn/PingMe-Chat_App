@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "362593804841",
+    "project_id": "pigma-chatapp-8c6b5",
+    "storage_bucket": "pigma-chatapp-8c6b5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362593804841:android:679971d35d0d64a9d47238",
+        "android_client_info": {
+          "package_name": "com.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362593804841-tn42issa7jv8oclukqe0bqm2n1dv3it5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chatapp",
+            "certificate_hash": "f20fdc4c555a8ef1891dcd39b2c4297b502758ed"
+          }
+        },
+        {
+          "client_id": "362593804841-ok9a1iiae0ne5eudjt7ci6d3j432bqlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9mfq9fP6cf0xox_-lRgDI6H6x9P7ABt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362593804841-ok9a1iiae0ne5eudjt7ci6d3j432bqlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
